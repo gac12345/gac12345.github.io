@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Crime Podcast</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="gracelogo.png" alt="True Crime Podcast Logo" class="logo">
+        <div id="waveform"></div>
+        <div class="controls">
+            <button id="playPauseBtn" class="play"><i class="fas fa-play"></i></button>
+            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+        </div>
+        <div class="text">
+            Created by Grace Carroll & Kyleigh McPeek, Honors in the Arts 2024
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var wavesurfer = WaveSurfer.create({
+                container: '#waveform',
+                waveColor: "#FFFFFF",
+                progressColor: '#c21524',
+                barWidth: 2,
+                height: 100,
+            });
+
+            wavesurfer.load('podcast.mp3');
+
+            var playPauseBtn = document.getElementById('playPauseBtn');
+            var currentTime = document.getElementById('currentTime');
+            var duration = document.getElementById('duration');
+
+            wavesurfer.on('ready', function() {
+                playPauseBtn.disabled = false;
+                duration.textContent = formatTime(wavesurfer.getDuration());
+            });
+
+            playPauseBtn.addEventListener('click', function() {
+                if (wavesurfer.isPlaying()) {
+                    wavesurfer.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                } else {
+                    wavesurfer.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+            });
+
+            wavesurfer.on('play', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            });
+
+            wavesurfer.on('pause', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+
+            wavesurfer.on('finish', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+
+            wavesurfer.on('audioprocess', function() {
+                currentTime.textContent = formatTime(wavesurfer.getCurrentTime());
+            });
+
+            function formatTime(seconds) {
+                var minutes = Math.floor(seconds / 60);
+                seconds = Math.floor(seconds % 60);
+                return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            }
+        });
+    </script>
+</body>
+</html>

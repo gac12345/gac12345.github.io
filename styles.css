@@ -1,0 +1,65 @@
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white; /* Ensures all text is white */
+}
+
+.container {
+    text-align: center;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.audio-player {
+    display: none; /* Hide the default audio player controls */
+}
+
+#waveform {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    margin: 20px auto;
+    background-color: #333;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+button:hover {
+    color: #c21524;
+}
+
+.text {
+    margin-top: 20px;
+    font-size: 16px;
+    color: white; /* Ensures the specific text is white */
+}
+
+#currentTime, #duration {
+    margin: 0 10px;
+    font-size: 16px;
+}
