@@ -55,11 +55,15 @@ button:hover {
 
 .text {
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 14px;
     color: white; /* Ensures the specific text is white */
 }
 
 #currentTime, #duration {
     margin: 0 10px;
     font-size: 16px;
+}
+
+.titletext{
+    font-size: 20px;
 }
